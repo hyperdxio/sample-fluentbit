@@ -1,6 +1,10 @@
 # Fluent Bit + HyperDX Integration Demo
 
-This demo shows how to run Fluent Bit with HyperDX integration using Docker Compose. The setup includes log collection, processing with OpenTelemetry formatting, and forwarding to HyperDX for observability.
+This demo shows how to run Fluent Bit v4.x with HyperDX integration using Docker Compose. The setup includes log collection, processing with OpenTelemetry formatting, and forwarding to HyperDX for observability.
+
+For other Fluent Bit versions:
+- **Fluent Bit 2.x**: See [HyperDX Fluent Bit 2.x documentation](https://www.hyperdx.io/docs/install/fluentbit#fluentbit-2x)
+- **Other versions**: This configuration is compatible with Fluent Bit 3.1.x-4.x series
 
 ## What This Demo Does
 
