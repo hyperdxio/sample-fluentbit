@@ -1,0 +1,11 @@
+FROM fluent/fluent-bit:4.0.3
+
+# Copy configuration files
+COPY fluent-bit-4.yaml /fluent-bit/etc/fluent-bit.yaml
+
+# Expose Fluent Bit ports
+EXPOSE 24224
+EXPOSE 9880
+
+# Default command
+CMD ["/fluent-bit/bin/fluent-bit", "--config=/fluent-bit/etc/fluent-bit.yaml"]

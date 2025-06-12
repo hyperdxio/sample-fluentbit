@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  fluentbit-hyperdx:
+    build:
+      context: .
+      dockerfile: Dockerfile.fluentbit-4
+    ports:
+      - "24224:24224"  # Forward input port
+      - "9880:9880"    # HTTP input port
+    environment:
+      - HYPERDX_API_KEY=${HYPERDX_API_KEY}
+    restart: unless-stopped

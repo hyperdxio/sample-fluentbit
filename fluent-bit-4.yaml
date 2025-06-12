@@ -1,0 +1,38 @@
+service:
+  flush: 1
+  log_level: info
+
+pipeline:
+  inputs:
+    - name: dummy
+      dummy: '{"message": "Hello World"}'
+      processors:
+        logs:
+          - name: opentelemetry_envelope
+          - name: content_modifier
+            context: otel_resource_attributes
+            action: upsert
+            key: service.name
+            value: my-service
+
+    - name: http
+      listen: 0.0.0.0
+      port: 9880
+      processors:
+        logs:
+          - name: opentelemetry_envelope
+          - name: content_modifier
+            context: otel_resource_attributes
+            action: upsert
+            key: service.name
+            value: my-service
+
+  outputs:
+    - name: stdout
+      match: '*'
+    - name: opentelemetry
+      match: '*'
+      host: in-otel.hyperdx.io
+      port: 443
+      header: Authorization ${HYPERDX_API_KEY}
+      tls: true
